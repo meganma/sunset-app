@@ -5,6 +5,7 @@
 //  Created by Adrian Ma on 4/22/23.
 //
 
+/*
 import SwiftUI
 
 struct PostList: View {
@@ -26,3 +27,5 @@ struct PostList_Previews: PreviewProvider {
         PostList()
     }
 }
+
+*/
