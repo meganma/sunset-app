@@ -7,37 +7,33 @@
 
 import SwiftUI
 
-struct WeatherData: Codable {
-    struct Coord: Codable {
-        let lon: Double
-        let lat: Double
-    }
-    let coord: [Coord]
-    struct Weather: Codable {
-        let main: String
-        let description: String
-    }
-    let weather: [Weather]
-    struct Sys: Codable {
-        let country: String
-        let sunrise: Int
-        let sunset: Int
-    }
-    let sys: [Sys]
-    let timezone: Int
-    let name: String
+struct WeatherData : Codable {
+    let coord : Coordinate
+    let name : String
+    let weather : [Weather]
+    let sys : Sys
 }
 
-class Api {
-    private let apiAddress = "https://api.openweathermap.org/data/2.5/weather"
-    func getWeatherData(latitude: Double, longitude: Double, completion: @escaping (WeatherData) -> ()){
-        guard let url = URL(string: "\(apiAddress)?lat=\(latitude)&lon=\(longitude)&APPID=\(Secret.APPID)") else {return}
-        URLSession.shared.dataTask(with: url) { (data, _, _) in
-            let weatherData = try! JSONDecoder().decode(WeatherData.self, from: data!)
-            DispatchQueue.main.async {
-                completion(weatherData)
-            }
-        }
-        .resume()
-    }
+struct Coordinate : Codable {
+    let lon, lat : Double
+}
+
+struct Weather : Codable {
+    let id : Int
+    let icon : String
+    let main : MainEnum
+    let description: String
+}
+
+struct Sys : Codable {
+    let type, id : Int
+    let sunrise, sunset : Date
+    let message : Double? // Message must be optional otherwise JSON parse failure
+    let country : String
+}
+
+enum MainEnum: String, Codable {
+    case clear = "Clear"
+    case clouds = "Clouds"
+    case rain = "Rain"
 }
