@@ -18,17 +18,6 @@ struct ContentView: View {
             backgroundColor()
                 .edgesIgnoringSafeArea(.all)
             
-            //Main text+time
-            Text("Sundown is at:")
-                .font(.system(size: 40, weight: .regular, design: .rounded))
-                .offset(x: 0, y: -100)
-                .foregroundColor(textColor)
-            
-            Text("6:59")
-                .font(.system(size: 150, weight: .thin, design: .rounded))
-                .offset(x: 0, y: 0)
-                .foregroundColor(textColor)
-            
             // Glassmorphism location bubble
             RoundedRectangle(cornerRadius: 20)
                 .foregroundColor(Color.white.opacity(0.2))
@@ -50,6 +39,23 @@ struct ContentView: View {
                 .offset(x: 0, y: -350)
             
             
+            VStack{
+                //Main text+time
+                Text("Sundown is at:")
+                    .font(.system(size: 40, weight: .regular, design: .rounded))
+                    .foregroundColor(textColor)
+                    .padding(.top, 20)
+                
+                Text("6:59")
+                    .font(.system(size: 150, weight: .thin, design: .rounded))
+                    .foregroundColor(textColor)
+            }
+            .frame(width: 350)
+            .background(Color.white.opacity(0.1))
+            .background(.ultraThinMaterial, in: RoundedRectangle(cornerRadius: 20, style:.continuous))
+            .offset(x:0,y:-100)
+            
+            
             
             VStack{
                 //timer text
@@ -59,43 +65,45 @@ struct ContentView: View {
                                 .offset(x: 0, y: 80)
                                 .foregroundColor(textColor)
                             
-                            HStack(spacing: 10) {
-                                //scroll bar for hours
-                                Picker("", selection: $hours) {
-                                    ForEach(0..<24) { hour in
-                                        Text("\(hour)")
-                                            .foregroundColor(textColor)
-                                            .font(.system(size: 25, weight: .regular, design: .rounded))
-                                    }
-                                }
-                                .pickerStyle(WheelPickerStyle())
-                                .frame(width: 80)
-                                .clipped()
-                                
-                                Text("hour")
-                                
-                                //scroll bar for minutes
-                                Picker("", selection: $minutes) {
-                                    ForEach(0..<60) { minute in
-                                        Text("\(minute)")
-                                            .foregroundColor(textColor)
-                                            .font(.system(size: 25, weight: .regular, design: .rounded))
-                                    }
-                                }
-                                .pickerStyle(WheelPickerStyle())
-                                .frame(width: 80,height:90)
-                                .clipped()
-                                
-                                Text("minutes")
-                            }
-                            .font(.system(size: 35, weight: .thin, design: .rounded))
-                            .foregroundColor(textColor)
-                            //.offset(x: 0, y: 140)
-                            
-                            Text("before sundown")
-                                .font(.system(size: 25, weight: .thin, design: .rounded))
-                                .offset(x: 0, y: -80)
+                HStack(spacing: 10) {
+                    //scroll bar for hours
+                    Picker("", selection: $hours) {
+                        ForEach(0..<24) { hour in
+                            Text("\(hour)")
                                 .foregroundColor(textColor)
+                                .font(.system(size: 25, weight: .regular, design: .rounded))
+                        }
+                    }
+                    .pickerStyle(WheelPickerStyle())
+                    .frame(width: 80,height:90)
+                    .clipped()
+                    
+                    Text("hour")
+                    
+                    //scroll bar for minutes
+                    Picker("", selection: $minutes) {
+                        ForEach(0..<60) { minute in
+                            Text("\(minute)")
+                                .foregroundColor(textColor)
+                                .font(.system(size: 25, weight: .regular, design: .rounded))
+                        }
+                    }
+                    .pickerStyle(WheelPickerStyle())
+                    .frame(width: 80,height:90)
+                    .clipped()
+                    
+                    Text("minutes")
+                }
+                .font(.system(size: 35, weight: .thin, design: .rounded))
+                .foregroundColor(textColor)
+                .padding(.bottom,60)
+                .padding(.top,60)
+                //.offset(x: 0, y: 140)
+                            
+                Text("before sundown")
+                    .font(.system(size: 25, weight: .thin, design: .rounded))
+                    .offset(x: 0, y: -80)
+                    .foregroundColor(textColor)
             }
             .offset(x: 0, y: 200)
             
