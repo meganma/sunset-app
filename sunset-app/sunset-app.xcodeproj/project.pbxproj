@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3901498829F4CD79008716CA /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3901498729F4CD79008716CA /* Data.swift */; };
+		3901498A29F4D2CD008716CA /* PostList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3901498929F4D2CD008716CA /* PostList.swift */; };
+		3901498C29F4DA00008716CA /* Secret.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3901498B29F4DA00008716CA /* Secret.swift */; };
 		5C2D4F1129F46E9600D33795 /* sunset_appApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C2D4F1029F46E9600D33795 /* sunset_appApp.swift */; };
 		5C2D4F1329F46E9600D33795 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C2D4F1229F46E9600D33795 /* ContentView.swift */; };
 		5C2D4F1529F46E9700D33795 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5C2D4F1429F46E9700D33795 /* Assets.xcassets */; };
@@ -34,6 +37,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3901498729F4CD79008716CA /* Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
+		3901498929F4D2CD008716CA /* PostList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostList.swift; sourceTree = "<group>"; };
+		3901498B29F4DA00008716CA /* Secret.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Secret.swift; sourceTree = "<group>"; };
 		5C2D4F0D29F46E9600D33795 /* sunset-app.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "sunset-app.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5C2D4F1029F46E9600D33795 /* sunset_appApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = sunset_appApp.swift; sourceTree = "<group>"; };
 		5C2D4F1229F46E9600D33795 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -94,10 +100,13 @@
 		5C2D4F0F29F46E9600D33795 /* sunset-app */ = {
 			isa = PBXGroup;
 			children = (
+				3901498B29F4DA00008716CA /* Secret.swift */,
 				5C2D4F1029F46E9600D33795 /* sunset_appApp.swift */,
 				5C2D4F1229F46E9600D33795 /* ContentView.swift */,
 				5C2D4F1429F46E9700D33795 /* Assets.xcassets */,
 				5C2D4F1629F46E9700D33795 /* Preview Content */,
+				3901498729F4CD79008716CA /* Data.swift */,
+				3901498929F4D2CD008716CA /* PostList.swift */,
 			);
 			path = "sunset-app";
 			sourceTree = "<group>";
@@ -258,7 +267,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				5C2D4F1329F46E9600D33795 /* ContentView.swift in Sources */,
+				3901498C29F4DA00008716CA /* Secret.swift in Sources */,
+				3901498829F4CD79008716CA /* Data.swift in Sources */,
 				5C2D4F1129F46E9600D33795 /* sunset_appApp.swift in Sources */,
+				3901498A29F4D2CD008716CA /* PostList.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
