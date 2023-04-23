@@ -12,33 +12,18 @@ struct ContentView: View {
     //color variables
     let textColor = Color.white
     //state variables for hours and minutes
-        @State private var hours = 1
-        @State private var minutes = 20
-        @State private var location: String = ""
+    @State private var hours = 1
+    @State private var minutes = 20
+    @State private var location: String = ""
+    @State private var sunsetTime: String = ""
     var body: some View {
         // Temporary location input box for api requests
-        NavigationView {
-            VStack {
-                HStack {
-                    TextField("Enter Location", text: $location)
-                        .textFieldStyle(RoundedBorderTextFieldStyle())
-                    Button {
-                        getWeatherData(for: location)
-                    } label: {
-                        Image(systemName: "magnifyingglass.circle.fill")
-                            .font(.title3)
-                    }
-                }
-                Spacer()
-            }
-            .padding(.horizontal)
-            .navigationTitle("Mobile Weather")
-        }
         
         // UI design for main app page
         ZStack {
             backgroundColor()
                 .edgesIgnoringSafeArea(.all)
+                .onAppear{getWeatherData(for: "San Francisco")}
             
             // Glassmorphism location bubble
             RoundedRectangle(cornerRadius: 20)
@@ -68,8 +53,8 @@ struct ContentView: View {
                     .foregroundColor(textColor)
                     .padding(.top, 20)
                 
-                Text("6:59")
-                    .font(.system(size: 150, weight: .thin, design: .rounded))
+                Text("\(sunsetTime)")
+                    .font(.system(size: 80, weight: .thin, design: .rounded))
                     .foregroundColor(textColor)
             }
             .frame(width: 350)
@@ -135,6 +120,8 @@ struct ContentView: View {
     // OpenWeatherMap API fetch function
     func getWeatherData(for location: String) {
         let apiService = APIService.shared
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "h:mm a"
         CLGeocoder().geocodeAddressString(location) { (placemarks, error) in
             if let error = error {
                 print(error.localizedDescription)
@@ -150,7 +137,12 @@ struct ContentView: View {
                         print("   Description: ", weatherData.weather[0].description)
                         print("   Country: ", weatherData.sys.country)
                         print("   sunrise: ", weatherData.sys.sunrise)
-                        print("   sunset: ", weatherData.sys.sunset)
+                        
+                        print("   sunset: ", dateFormatter.string(from: weatherData.sys.sunset))
+                        DispatchQueue.main.async {
+                            // Update the sunset time state variable with the retrieved value
+                            self.sunsetTime = "\(dateFormatter.string(from: weatherData.sys.sunset))"
+                        }
                     case .failure(let apiError):
                         // Api fetch request error message
                         switch apiError {
