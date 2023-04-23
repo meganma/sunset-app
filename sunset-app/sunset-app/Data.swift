@@ -7,20 +7,35 @@
 
 import SwiftUI
 
-struct Post: Codable, Identifiable {
-    let id = UUID()
-    var title: String
-    var body: String
+struct WeatherData: Codable {
+    struct Coord: Codable {
+        let lon: Double
+        let lat: Double
+    }
+    let coord: [Coord]
+    struct Weather: Codable {
+        let main: String
+        let description: String
+    }
+    let weather: [Weather]
+    struct Sys: Codable {
+        let country: String
+        let sunrise: Int
+        let sunset: Int
+    }
+    let sys: [Sys]
+    let timezone: Int
+    let name: String
 }
 
 class Api {
-    func getPosts(completion: @escaping ([Post]) -> ()){
-        guard let url = URL(string:
-                                "https://jsonplaceholder.typicode.com/posts") else { return }
+    private let apiAddress = "https://api.openweathermap.org/data/2.5/weather"
+    func getWeatherData(latitude: Double, longitude: Double, completion: @escaping (WeatherData) -> ()){
+        guard let url = URL(string: "\(apiAddress)?lat=\(latitude)&lon=\(longitude)&APPID=\(Secret.APPID)") else {return}
         URLSession.shared.dataTask(with: url) { (data, _, _) in
-            let posts = try! JSONDecoder().decode([Post].self, from: data!)
+            let weatherData = try! JSONDecoder().decode(WeatherData.self, from: data!)
             DispatchQueue.main.async {
-                completion(posts)
+                completion(weatherData)
             }
         }
         .resume()

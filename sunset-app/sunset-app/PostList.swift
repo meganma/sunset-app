@@ -8,14 +8,14 @@
 import SwiftUI
 
 struct PostList: View {
-    @State var posts: [Post] = []
+    @State var weatherData: WeatherData = []
     var body: some View {
-        List(posts) { post in
-            Text(post.title)
+        List(weatherData) { aWeatherData in
+            Text(aWeatherData.title)
         }
         .onAppear{
-            Api().getPosts { (posts) in
-                self.posts = posts
+            Api().getWeatherData(latitude:34, longitude:-118) { (weatherData) in
+                self.weatherData = weatherData
             }
         }
     }
