@@ -12,7 +12,7 @@ struct sunset_appApp: App {
     var body: some Scene {
         
         WindowGroup {
-            PostList()
+            ContentView()
         }
     }
 }
