@@ -10,8 +10,9 @@ import SwiftUI
 @main
 struct sunset_appApp: App {
     var body: some Scene {
+        
         WindowGroup {
-            ContentView()
+            PostList()
         }
     }
 }
